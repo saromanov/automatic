@@ -1,0 +1,33 @@
+{  
+   "deploy":[ 
+      {
+         "print": "first phase",
+         "exec": "curl https://golang.org/pkg/go/build/"
+      },
+
+      {
+         "parallel": [{"exec": "date"}]
+      },
+      {  
+         "print":"start to execute one.sh"
+      },
+      {  
+         "script":{  
+            "path":"one.sh",
+            "delay":"30s"
+         }
+      },
+      {  
+         "print":"Script one.sh was executed"
+      },
+      {  
+         "script":{  
+            "path":"two.sh"
+         }
+      },
+   ],
+   "test":{  
+      "execute":"ping ya.ru -c 5"
+   }
+}
+}
