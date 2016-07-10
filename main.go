@@ -10,7 +10,8 @@ import (
 var (
 	app       = kingpin.New("automatic", "A command-line chat application.")
 	debug     = app.Flag("debug", "Enable debug mode.").Bool()
-	deploy    = app.Command("deploy", "Register a new user.")
+	deploy    = app.Command("deploy", "Run deploy environment")
+	test      = app.Command("test", "Run test environment")
 	exec      = app.Command("exec", "Register a new user.")
 	newDeploy = deploy.Arg("new", "Nickname for user.").String()
 )
@@ -28,6 +29,12 @@ func main() {
 		}
 		cfg.Process(automatic.Deploy)
 	case exec.FullCommand():
-		fmt.Println(*exec)
+		cfg := automatic.Automatic{}
+		err := cfg.LoadConfig("structure.json")
+		if err != nil {
+			fmt.Println(err)
+			os.Exit(1)
+		}
+		cfg.Process(automatic.Test)
 	}
 }
