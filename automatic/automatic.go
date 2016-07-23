@@ -3,6 +3,7 @@ package automatic
 import (
 	"encoding/json"
 	"fmt"
+	log "github.com/Sirupsen/logrus"
 	"io/ioutil"
 	"os"
 	"sync"
@@ -34,9 +35,9 @@ func (auto *Automatic) LoadConfig(path string) error {
 
 func (auto *Automatic) Process(name string) {
 	jsonparser.ArrayEach(auto.workConfig, func(value []byte, dataType jsonparser.ValueType, offset int, err error) {
-		fmt.Println(dataType)
+		log.WithFields(log.Fields{}).Info("Getting next element from config")
 		if err != nil {
-			//return
+			log.WithFields(log.Fields{}).Warn(fmt.Sprintf("%v", err))
 		}
 
 		parse(value)
@@ -66,7 +67,7 @@ func (auto *Automatic) Process(name string) {
 						return
 					}
 
-					failChan<- 2
+					failChan <- 2
 
 					//fmt.Println(out)
 				}(execPath.(string))
@@ -79,7 +80,7 @@ func (auto *Automatic) Process(name string) {
 			os.Exit(1)
 		case 2:
 			return
-		} 
+		}
 	}, name)
 }
 
