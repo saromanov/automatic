@@ -87,7 +87,8 @@ func (auto *Automatic) Process(name string) {
 func parse(value []byte) {
 	valueData, errPath := jsonparser.GetString(value, "script", "path")
 	if errPath == nil {
-		fmt.Println(valueData)
+		// Execution of the script
+		fmt.Println("EXECUTE PATH: ", valueData)
 	}
 
 	valuePrint, errPrint := jsonparser.GetString(value, "print")
