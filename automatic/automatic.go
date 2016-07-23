@@ -88,7 +88,11 @@ func parse(value []byte) {
 	valueData, errPath := jsonparser.GetString(value, "script", "path")
 	if errPath == nil {
 		// Execution of the script
-		fmt.Println("EXECUTE PATH: ", valueData)
+		err := ExecScript(valueData)
+		if err != nil {
+			color.Red(fmt.Sprintf("Falled to execute script: %s", valueData))
+			return
+		}
 	}
 
 	valuePrint, errPrint := jsonparser.GetString(value, "print")
