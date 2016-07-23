@@ -28,7 +28,7 @@ func main() {
 			os.Exit(1)
 		}
 		cfg.Process(automatic.Deploy)
-	case exec.FullCommand():
+	case test.FullCommand():
 		cfg := automatic.Automatic{}
 		err := cfg.LoadConfig("structure.json")
 		if err != nil {
