@@ -80,7 +80,7 @@ func (auto *Automatic) Process(name string) {
 		case 2:
 			return
 		} 
-	}, "deploy")
+	}, name)
 }
 
 // parse provides parsing of the config file
