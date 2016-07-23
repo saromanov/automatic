@@ -83,6 +83,7 @@ func (auto *Automatic) Process(name string) {
 	}, "deploy")
 }
 
+// parse provides parsing of the config file
 func parse(value []byte) {
 	valueData, errPath := jsonparser.GetString(value, "script", "path")
 	if errPath == nil {
