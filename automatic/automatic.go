@@ -90,7 +90,7 @@ func parse(value []byte) {
 		// Execution of the script
 		err := ExecScript(valueData)
 		if err != nil {
-			color.Red(fmt.Sprintf("Falled to execute script: %s", valueData))
+			color.Red(fmt.Sprintf("Falled to execute script %s: %v", valueData, err))
 			return
 		}
 	}
