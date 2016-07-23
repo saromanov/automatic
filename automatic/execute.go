@@ -1,6 +1,7 @@
 package automatic
 
 import (
+	"fmt"
 	"os/exec"
 )
 
@@ -19,10 +20,12 @@ func ExecCommand(command string) (string, error) {
 // ExecScript provides execution of the script
 func ExecScript(path string) error {
 	cmd := exec.Command(path)
-	_, err := cmd.Output()
+	out, err := cmd.Output()
 	if err != nil {
 		return  err
 	}
+
+	fmt.Printf("%s: %s", path, string(out))
 
 	return nil
 }
