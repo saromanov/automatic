@@ -1,5 +1,7 @@
 # automatic
 
+tool for automation of everything
+
 Supported keys
 
 * print - print line to the output
